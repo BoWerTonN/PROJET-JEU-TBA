@@ -1,6 +1,6 @@
 # Define the Player class.
 class Player():
-     """
+    """
     This class represents a command. A command is composed of a command word, a help string, an action and a number of parameters.
 
     Attributes:

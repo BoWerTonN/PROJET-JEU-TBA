@@ -1,5 +1,18 @@
 # Define the Player class.
 class Player():
+     """
+    This class represents a command. A command is composed of a command word, a help string, an action and a number of parameters.
+
+    Attributes:
+        current_room (str): Salle dans laquelle le joueur se trouve actuellement 
+        name (str): nom du joueur
+        
+
+    Methods:
+        __init__(self, name) : Le constructeur
+        move(self,direction) : Change le joueur de carte
+
+    """
 
     # Define the constructor.
     def __init__(self, name):

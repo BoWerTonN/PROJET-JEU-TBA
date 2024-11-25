@@ -1,7 +1,23 @@
 # Define the Room class.
 
 class Room:
+     """
+    This class represents a command. A command is composed of a command word, a help string, an action and a number of parameters.
 
+    Attributes:
+        description (str): Description de la pièce
+        name (str): Nom du joueur
+        exits (dict): Dictionnaire comprenant les points cardinaux
+       
+
+    Methods:
+        __init__(self, name, description) : The constructor.
+        get_exit(self, direction): Vérifie quelles sorties existent.
+        get_exit_string(self): Renvoie au joueur la liste des sorties possibles.
+        get_long_description(self): Renvoie la description de la salle ainsi que ses sorties
+
+
+    """
     # Define the constructor. 
     def __init__(self, name, description):
         self.name = name

@@ -14,7 +14,7 @@ class Room:
         __init__(self, name, description) : The constructor.
         get_exit(self, direction): Vérifie quelles sorties existent.
         get_exit_string(self): Renvoie au joueur la liste des sorties possibles.
-        get_long_description(self): Renvoie la description de la salle ainsi que ses sorties
+        get_long_description(self): Renvoie la description de la salle ainsi que ses sortiese
 
 
     """

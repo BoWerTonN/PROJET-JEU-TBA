@@ -31,9 +31,9 @@ class Game:
         # Setup rooms
 
         foret = Room("Foret", "foret")
-        self.rooms.append(forest)
+        self.rooms.append(foret)
         rempart = Room("Rempart", "rempart")
-        self.rooms.append(prairie)
+        self.rooms.append(rempart)
         grotte = Room("Grotte", "grotte")
         self.rooms.append(grotte)
         cascade = Room("Cascade", "cascade")
@@ -53,10 +53,10 @@ class Game:
         foret.exits = {"N" : cascade, "E" : None, "S" : village, "O" : None, "U": None, "D": None}
         rempart.exits = {"N" : None, "E" : None, "S" : None, "O" : None, "U": None, "D": chateau}
         grotte.exits = {"N" : None, "E" : None, "S" : cascade, "O" : None, "U": None, "D": None}
-        cascade.exits = {"N" : grotte, "E" : None, "S" : fôret, "O" : None, "U": None, "D": None}
+        cascade.exits = {"N" : grotte, "E" : None, "S" : foret, "O" : None, "U": None, "D": None}
         village.exits = {"N" : foret, "E" : chateau, "S" : champ, "O" : None, "U": None, "D": None}
         champ.exits = {"N" : village, "E" : None, "S" : None, "O" : None, "U": None, "D": None}
-        chateau.exits = {"N" : None, "E" : village, "S" : None, "O" :donjon, "U": rampart, "D": None}
+        chateau.exits = {"N" : None, "E" : village, "S" : None, "O" :donjon, "U": rempart, "D": None}
         donjon.exits = {"N" : None, "E" : None, "S" : None, "O" : chateau, "U": None, "D": prison}
         prison.exits = {"N" : None, "E" : None, "S" : None, "O" : None, "U": donjon, "D": None}
 

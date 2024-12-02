@@ -25,37 +25,45 @@ class Game:
         self.commands["help"] = help
         quit = Command("quit", " : quitter le jeu", Actions.quit, 0)
         self.commands["quit"] = quit
-        go = Command("go", " <direction> : se déplacer dans une direction cardinale (N, E, S, O)", Actions.go, 1)
+        go = Command("go", " <direction> : se déplacer dans une direction (N, E, S, O, U, D )", Actions.go, 1)
         self.commands["go"] = go
         
         # Setup rooms
 
-        forest = Room("Forest", "une forêt enchantée. Vous entendez une brise légère à travers la cime des arbres.")
+        foret = Room("Foret", "foret")
         self.rooms.append(forest)
-        tower = Room("Tower", "une immense tour en pierre qui s'élève au dessus des nuages.")
-        self.rooms.append(tower)
-        cave = Room("Cave", "une grotte profonde et sombre. Des voix semblent provenir des profondeurs.")
-        self.rooms.append(cave)
-        cottage = Room("Cottage", "un petit chalet pittoresque avec un toit de chaume. Une épaisse fumée verte sort de la cheminée.")
-        self.rooms.append(cottage)
-        swamp = Room("Swamp", "un marécage sombre et ténébreux. L'eau bouillonne, les abords sont vaseux.")
-        self.rooms.append(swamp)
-        castle = Room("Castle", "un énorme château fort avec des douves et un pont levis. Sur les tours, des flèches en or massif.")
-        self.rooms.append(castle)
+        rempart = Room("Rempart", "rempart")
+        self.rooms.append(prairie)
+        grotte = Room("Grotte", "grotte")
+        self.rooms.append(grotte)
+        cascade = Room("Cascade", "cascade")
+        self.rooms.append(cascade)
+        village = Room("Village", "village")
+        self.rooms.append(village)
+        champ = Room("Champ", "champ")
+        self.rooms.append(champ)
+        chateau = Room("Chateau", "chateau" )
+        self.rooms.append(chateau)
+        donjon = Room("Donjon","donjon")
+        self.rooms.append(donjon)
+        prison = Room("Prison","prison")
 
         # Create exits for rooms
 
-        forest.exits = {"N" : cave, "E" : None, "S" : castle, "O" : None}
-        tower.exits = {"N" : cottage, "E" : None, "S" : None, "O" : None}
-        cave.exits = {"N" : None, "E" : cottage, "S" : forest, "O" : None}
-        cottage.exits = {"N" : None, "E" : None, "S" : tower, "O" : cave}
-        swamp.exits = {"N" : tower, "E" : None, "S" : None, "O" : castle}
-        castle.exits = {"N" : forest, "E" : swamp, "S" : None, "O" : None}
+        foret.exits = {"N" : cascade, "E" : None, "S" : village, "O" : None, "U": None, "D": None}
+        rempart.exits = {"N" : None, "E" : None, "S" : None, "O" : None, "U": None, "D": chateau}
+        grotte.exits = {"N" : None, "E" : None, "S" : cascade, "O" : None, "U": None, "D": None}
+        cascade.exits = {"N" : grotte, "E" : None, "S" : fôret, "O" : None, "U": None, "D": None}
+        village.exits = {"N" : foret, "E" : chateau, "S" : champ, "O" : None, "U": None, "D": None}
+        champ.exits = {"N" : village, "E" : None, "S" : None, "O" : None, "U": None, "D": None}
+        chateau.exits = {"N" : None, "E" : village, "S" : None, "O" :donjon, "U": rampart, "D": None}
+        donjon.exits = {"N" : None, "E" : None, "S" : None, "O" : chateau, "U": None, "D": prison}
+        prison.exits = {"N" : None, "E" : None, "S" : None, "O" : None, "U": donjon, "D": None}
 
         # Setup player and starting room
 
         self.player = Player(input("\nEntrez votre nom: "))
-        self.player.current_room = swamp
+        self.player.current_room = chateau
 
     # Play the game
     def play(self):

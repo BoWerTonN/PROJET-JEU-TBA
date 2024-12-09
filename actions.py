@@ -47,6 +47,15 @@ class Actions:
         
         player = game.player
         l = len(list_of_words)
+
+        # Listes des appellations possibles pour chaque direction
+        nord = ["N", "n", "nord", "NORD", "Nord"]
+        sud = ["S", "s", "sud", "SUD", "Sud"]
+        est = ["E", "e", "est", "EST", "Est"]
+        ouest = ["O", "o", "ouest", "OUEST", "Ouest"]
+        up = ["U","u","up","UP","Up"]
+        down = ["D","d","down",'DOWN',"Down"]
+
         # If the number of parameters is incorrect, print an error message and return False.
         if l != number_of_parameters + 1:
             command_word = list_of_words[0]
@@ -55,8 +64,25 @@ class Actions:
 
         # Get the direction from the list of words.
         direction = list_of_words[1]
-        # Move the player in the direction specified by the parameter.
-        player.move(direction)
+
+         # Move the player in the direction specified by the parameter.
+        if direction in nord:
+            player.move("N")
+        elif direction in sud:
+            player.move("S")
+        elif direction in est:
+            player.move("E")
+        elif direction in ouest:
+            player.move("O")
+        elif direction in up:
+            player.move("U")
+        elif direction in down:
+            player.move("D")
+
+        else:
+            print("\nDirection inconnue. Veuillez entrer une direction valide : N, S, E, O, U, D")
+            return False
+            
         return True
 
     def quit(game, list_of_words, number_of_parameters):

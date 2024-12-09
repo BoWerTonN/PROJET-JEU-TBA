@@ -56,7 +56,7 @@ class Game:
         cascade.exits = {"N" : grotte, "E" : None, "S" : foret, "O" : None, "U": None, "D": None}
         village.exits = {"N" : foret, "E" : chateau, "S" : champ, "O" : None, "U": None, "D": None}
         champ.exits = {"N" : village, "E" : None, "S" : None, "O" : None, "U": None, "D": None}
-        chateau.exits = {"N" : None, "E" : village, "S" : None, "O" :donjon, "U": rempart, "D": None}
+        chateau.exits = {"N" : None, "E" : donjon, "S" : None, "O" : village, "U": rempart, "D": None}
         donjon.exits = {"N" : None, "E" : None, "S" : None, "O" : chateau, "U": None, "D": prison}
         prison.exits = {"N" : None, "E" : None, "S" : None, "O" : None, "U": donjon, "D": None}
 

@@ -40,6 +40,7 @@ class Player():
         # Set the current room to the next room.
         self.current_room = next_room
         print(self.current_room.get_long_description())
+        print("historique des salles:", self.get_history())
         return True
 
     def get_history(self):
@@ -47,5 +48,5 @@ class Player():
             "\nVous avez déja visité les piéces suivantes:/"+
             "\n".join(f"-{room.name}"for room in self.history)
         )
-        
+
     

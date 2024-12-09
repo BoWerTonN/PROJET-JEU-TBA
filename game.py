@@ -30,15 +30,15 @@ class Game:
         
         # Setup rooms
 
-        foret = Room("Foret", "foret")
+        foret = Room("Foret", "Une forêt dense et sombre, où la lumière peine à pénétrer. C’est le refuge de nombreux rebelles, mais aussi le lieu où les druides pratiquent encore leurs anciens rituels.")
         self.rooms.append(foret)
-        rempart = Room("Rempart", "rempart")
+        rempart = Room("Rempart", "Une imposante muraille protégeant autrefois la capitale, aujourd’hui en ruines. Des éclats de combat y sont encore visibles.")
         self.rooms.append(rempart)
-        grotte = Room("Grotte", "grotte")
+        grotte = Room("Grotte", "Une cavité naturelle creusée dans la roche, humide et oppressante. On dit qu’elle mène à des passages oubliés.")
         self.rooms.append(grotte)
         cascade = Room("Cascade", "cascade")
         self.rooms.append(cascade)
-        village = Room("Village", "village")
+        village = Room("Village", "Une chute d’eau majestueuse masquant une entrée secrète. Le son apaisant dissimule une tension sous-jacente.d")
         self.rooms.append(village)
         champ = Room("Champ", "champ")
         self.rooms.append(champ)

@@ -18,6 +18,13 @@ class Player():
     def __init__(self, name):
         self.name = name
         self.current_room = None
+        self.history = [] 
+    def set_starting_room(self, starting_room):
+        
+        # Set the starting room for the player and initialize the history with it.
+        
+        self.current_room = starting_room
+        self.history.append(starting_room) 
     
     # Define the move method.
     def move(self, direction):
@@ -28,7 +35,7 @@ class Player():
         if next_room is None:
             print("\nAucune porte dans cette direction !\n")
             return False
-        
+        self.history.append(self.current_room)
         # Set the current room to the next room.
         self.current_room = next_room
         print(self.current_room.get_long_description())

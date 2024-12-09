@@ -19,6 +19,7 @@ class Player():
         self.name = name
         self.current_room = None
         self.history = [] 
+        
     def set_starting_room(self, starting_room):
         
         # Set the starting room for the player and initialize the history with it.
@@ -41,4 +42,10 @@ class Player():
         print(self.current_room.get_long_description())
         return True
 
+    def get_history(self):
+        return(
+            "\nVous avez déja visité les piéces suivantes:/"+
+            "\n".join(f"-{room.name}"for room in self.history)
+        )
+        
     

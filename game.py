@@ -36,17 +36,19 @@ class Game:
         self.rooms.append(rempart)
         grotte = Room("Grotte", "Une cavité naturelle creusée dans la roche, humide et oppressante. On dit qu’elle mène à des passages oubliés.")
         self.rooms.append(grotte)
-        cascade = Room("Cascade", "cascade")
+        cascade = Room("Cascade", "Une chute d’eau majestueuse masquant une entrée secrète. Le son apaisant dissimule une tension sous-jacente.")
         self.rooms.append(cascade)
-        village = Room("Village", "Une chute d’eau majestueuse masquant une entrée secrète. Le son apaisant dissimule une tension sous-jacente.d")
+        village = Room("Village", "Un lieu paisible autrefois, maintenant en proie à la peur. Les habitants murmurent à propos des Ombres Noires et refusent de parler aux étrangers.")
         self.rooms.append(village)
-        champ = Room("Champ", "champ")
+        champ = Room("Champ", "Des étendues de terres cultivées, abandonnées après les récents raids. Les épis de blé se balancent tristement dans le vent.")
         self.rooms.append(champ)
-        chateau = Room("Chateau", "chateau" )
+        chateau = Room("Chateau", "Le cœur du royaume, autrefois un lieu de faste, maintenant assiégé par le chaos. Ses couloirs cachent des complots et des souvenirs du roi disparu." )
         self.rooms.append(chateau)
-        donjon = Room("Donjon","donjon")
+        donjon = Room("Donjon","La partie la plus fortifiée du château, utilisée pour protéger les trésors ou enfermer les ennemis du royaume.")
         self.rooms.append(donjon)
-        prison = Room("Prison","prison")
+        prison = Room("Prison","Une geôle sombre et humide, où les cris des captifs résonnent encore. C’est ici que sont enfermés les ennemis du trône.")
+        self.rooms.append(prison)
+        
 
         # Create exits for rooms
 

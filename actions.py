@@ -163,3 +163,39 @@ class Actions:
             print("\t- " + str(command))
         print()
         return True
+
+        def back(game, list_of_words, number_of_parameters):
+        """
+    Permet au joueur de revenir à la salle précédente.
+    
+    Args:
+        game (Game): L'objet du jeu.
+        list_of_words (list): Liste des mots dans la commande.
+        number_of_parameters (int): Le nombre de paramètres attendus par la commande.
+
+    Returns:
+        bool: True si la commande est exécutée avec succès, False sinon.
+    """
+    # Vérifier si l'historique des salles est vide ou contient qu'une seule salle
+        if len(game.player.history) <= 1:  # Si l'historique contient 1 ou moins de salles, le joueur est déjà à son point de départ
+            game.player.current_room = game.player.foret
+            print(game.player.current_room.get_long_description())
+            return False
+    
+    # Vérifier que le nombre de paramètres est correct
+        l = len(list_of_words)
+        if l != number_of_parameters + 1:
+            command_word = list_of_words[0]
+            print(f"Usage incorrect de la commande '{command_word}'")
+            return False
+    
+    # Récupérer la salle précédente à partir de l'historique
+        previous_room = game.player.history[-1]  # La deuxième dernière salle dans l'historique
+        print(f"Vous êtes revenu dans : {previous_room.name}.")
+    
+        game.player.current_room = previous_room
+    
+        print(game.player.current_room.get_long_description())
+
+        game.player.history.pop()  # La salle actuelle est en dernière position, donc on la retire
+        return True

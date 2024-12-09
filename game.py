@@ -27,6 +27,9 @@ class Game:
         self.commands["quit"] = quit
         go = Command("go", " <direction> : se déplacer dans une direction (N, E, S, O, U, D )", Actions.go, 1)
         self.commands["go"] = go
+        back = Command("back", " <direction> : se déplacer dans une direction (N, E, S, O, U, D )", Actions.back, 0)
+        self.commands["back"]=back
+        
         
         # Setup rooms
 
@@ -48,7 +51,7 @@ class Game:
         self.rooms.append(donjon)
         prison = Room("Prison","Une geôle sombre et humide, où les cris des captifs résonnent encore. C’est ici que sont enfermés les ennemis du trône.")
         self.rooms.append(prison)
-        
+
 
         # Create exits for rooms
 

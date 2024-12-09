@@ -164,7 +164,7 @@ class Actions:
         print()
         return True
 
-        def back(game, list_of_words, number_of_parameters):
+    def back(game, list_of_words, number_of_parameters):
         """
     Permet au joueur de revenir à la salle précédente.
     

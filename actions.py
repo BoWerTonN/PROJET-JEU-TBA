@@ -178,8 +178,7 @@ class Actions:
     """
     # Vérifier si l'historique des salles est vide ou contient qu'une seule salle
         if len(game.player.history) <= 1:  # Si l'historique contient 1 ou moins de salles, le joueur est déjà à son point de départ
-            game.player.current_room = game.player.foret
-            print(game.player.current_room.get_long_description())
+            print("Le joueur est à son point d'apparition")
             return False
     
     # Vérifier que le nombre de paramètres est correct
@@ -198,4 +197,5 @@ class Actions:
         print(game.player.current_room.get_long_description())
 
         game.player.history.pop()  # La salle actuelle est en dernière position, donc on la retire
+        print(game.player.get_history())
         return True

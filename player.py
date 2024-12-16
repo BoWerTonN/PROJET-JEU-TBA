@@ -34,18 +34,18 @@ class Player():
 
         # If the next room is None, print an error message and return False.
         if next_room is None:
-            print("\nAucune porte dans cette direction !\n")
+            print("\nAucun lieu dans cette direction !\n")
             return False
         self.history.append(self.current_room)
         # Set the current room to the next room.
         self.current_room = next_room
         print(self.current_room.get_long_description())
-        print("historique des salles:", self.get_history())
+        print("historique des lieux:", self.get_history())
         return True
 
     def get_history(self):
         return(
-            "\nVous avez déja visité les piéces suivantes:/"+
+            "\nVous avez déja visité les lieux suivants:/"+
             "\n".join(f"-{room.name}"for room in self.history)
         )
 

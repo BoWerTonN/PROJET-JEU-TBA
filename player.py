@@ -18,7 +18,8 @@ class Player():
     def __init__(self, name):
         self.name = name
         self.current_room = None
-        self.history = [] 
+        self.history = []
+        self.inventory = {}
         
     def set_starting_room(self, starting_room):
         
@@ -49,4 +50,11 @@ class Player():
             "\n".join(f"-{room.name}"for room in self.history)
         )
 
-    
+    def get_inventory():
+        if not self.items:
+            return "Votre inventaire est vide."
+        return( 
+            "Vous disposez des items suivants :\n" + 
+            "\n".join(f"-{item}" for item in self.items)
+        )
+        

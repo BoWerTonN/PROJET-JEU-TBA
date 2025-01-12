@@ -199,3 +199,46 @@ class Actions:
         game.player.history.pop()  # La salle actuelle est en dernière position, donc on la retire
         print(game.player.get_history())
         return True
+        
+     def check(game, list_of_words, number_of_parameters):
+        
+        l = len(list_of_words)
+        # If the number of parameters is incorrect, print an error message and return False.
+        if l != number_of_parameters + 1:
+            command_word = list_of_words[0]
+            print(MSG0.format(command_word=command_word))
+            return False
+
+        print(game.player.get_inventory())
+
+    
+    def look(game, list_of_words, number_of_parameters):
+        l = len(list_of_words)
+        # If the number of parameters is incorrect, print an error message and return False.
+        if l != number_of_parameters + 1:
+            command_word = list_of_words[0]
+            print(MSG0.format(command_word=command_word))
+            return False
+        
+        if not game.player.current_room.inventory :
+            print("Il n'y a rien ici")
+        
+        for key, value in game.player.current_room.inventory.items():
+             print(f"{key}: {value}")
+
+
+   
+    def take(game, list_of_words, number_of_parameters):
+        l = len(list_of_words)
+        # If the number of parameters is incorrect, print an error message and return False.
+        if l != number_of_parameters + 1:
+            command_word = list_of_words[0]
+            print(MSG0.format(command_word=command_word))
+            return False
+        
+        item = list_of_words[1]
+        for key, items in game.player.current_room.inventory.items():
+            if item == key :
+                game.player.inventory[key] = items
+                del game.player.current_room.inventory[key]
+                break

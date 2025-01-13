@@ -52,5 +52,5 @@ class Room:
             return "Il n'y a rien ici."
         return (
             "La pièce contient :\n" +
-            "\n".join(f"- {item} : {description}" for item, description in self.inventory.items())
+            "\n".join(f" {str(item)}" for item in self.inventory)
         )

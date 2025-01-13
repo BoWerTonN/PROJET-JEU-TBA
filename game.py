@@ -70,7 +70,7 @@ class Game:
         self.player = Player(input("\nEntrez votre nom: "))
         self.player.current_room = chateau
 
-        amulette = Item("Amulette des Druides", "Une amulette ancienne ornée de symboles mystérieux.", 0.5)
+        amulette = Item("Amulette des Druides", "Une amulette ancienne ornée de symboles mystérieux.", "0.5")
         foret.inventory.add(amulette)
 
     # Play the game

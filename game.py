@@ -73,6 +73,9 @@ class Game:
         amulette = Item("Amulette des Druides", "Une amulette ancienne ornée de symboles mystérieux.", "0.5")
         foret.inventory.add(amulette)
 
+        check = Command("check", " : vérifier les items dans votre inventaire", Actions.check, 0)
+        self.commands["check"] = check
+
     # Play the game
     def play(self):
         self.setup()

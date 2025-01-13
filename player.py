@@ -50,11 +50,19 @@ class Player():
             "\n".join(f"-{room.name}"for room in self.history)
         )
 
-    def get_inventory():
-        if not self.items:
+    def get_inventory(self):
+        """
+        Retourne une chaîne décrivant les objets dans l'inventaire du joueur.
+
+        Returns:
+            str: Description des objets ou message indiquant que l'inventaire est vide.
+        """
+        if not self.inventory:
             return "Votre inventaire est vide."
-        return( 
-            "Vous disposez des items suivants :\n" + 
-            "\n".join(f"-{item}" for item in self.items)
+
+        inventory_description = "\n".join(
+            f"- {item.name} : {item.description} ({item.weight} kg)"
+            for item in self.inventory.values()
         )
+        return f"Vous disposez des items suivants :\n{inventory_description}"
         

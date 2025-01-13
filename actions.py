@@ -201,15 +201,22 @@ class Actions:
         return True
         
     def check(game, list_of_words, number_of_parameters):
-        
-        l = len(list_of_words)
-        # If the number of parameters is incorrect, print an error message and return False.
-        if l != number_of_parameters + 1:
-            command_word = list_of_words[0]
-            print(MSG0.format(command_word=command_word))
-            return False
+        """
+        Affiche les items présents dans l'inventaire du joueur.
 
-        print(game.player.get_inventory())
+        :param game: L'objet du jeu contenant les informations sur l'état du jeu.
+        :param list_of_words: La liste des mots de la commande (ici, 'check').
+        :param number_of_parameters: Le nombre de paramètres attendus (non utilisé ici).
+        """
+        # Accéder à l'inventaire du joueur
+        inventory = game.player.inventory
+        
+        if not inventory:
+            print("Votre inventaire est vide.")
+        else:
+            print("Vous disposez des items suivants :")
+            for item in inventory.values():  # On suppose que inventory est un dictionnaire
+                print(f"- {item.name} : {item.description} ({item.weight} kg)")
 
     
     def look(game, list_of_words, number_of_parameters):

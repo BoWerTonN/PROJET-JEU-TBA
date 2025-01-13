@@ -200,7 +200,7 @@ class Actions:
         print(game.player.get_history())
         return True
         
-     def check(game, list_of_words, number_of_parameters):
+    def check(game, list_of_words, number_of_parameters):
         
         l = len(list_of_words)
         # If the number of parameters is incorrect, print an error message and return False.

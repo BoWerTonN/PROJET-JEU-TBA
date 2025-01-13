@@ -213,18 +213,16 @@ class Actions:
 
     
     def look(game, list_of_words, number_of_parameters):
-        l = len(list_of_words)
-        # If the number of parameters is incorrect, print an error message and return False.
-        if l != number_of_parameters + 1:
+        """ Affiche l'inventaire de la salle actuelle.
+        """
+        if len(list_of_words)!= number_of_parameters + 1:
             command_word = list_of_words[0]
             print(MSG0.format(command_word=command_word))
             return False
+        print(game.player.current_room.get_inventory())
+        return True
         
-        if not game.player.current_room.inventory :
-            print("Il n'y a rien ici")
-        
-        for key, value in game.player.current_room.inventory.items():
-             print(f"{key}: {value}")
+       
 
 
    

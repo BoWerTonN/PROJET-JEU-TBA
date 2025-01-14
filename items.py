@@ -1,4 +1,4 @@
-quitquclass Item:
+class Item:
     def __init__(self, name, description, weight):
         """
         Initialise un objet de type Item.

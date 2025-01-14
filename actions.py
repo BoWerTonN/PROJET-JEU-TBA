@@ -211,19 +211,7 @@ class Actions:
             number_of_parameters (int): Le nombre de paramètres attendu pour cette commande.
         """
         # Appelle la méthode get_inventory() de l'objet Player
-        print(game.player.get_inventory())
-
-    
-    def look(game, list_of_words, number_of_parameters):
-        """ Affiche l'inventaire de la salle actuelle.
-        """
-        if len(list_of_words)!= number_of_parameters + 1:
-            command_word = list_of_words[0]
-            print(MSG0.format(command_word=command_word))
-            return False
-
-        return game.player.current_room.get_inventory()
-        
+        print(game.player.get_inventory())    
    
     def take(game, list_of_words, number_of_parameters):
         l = len(list_of_words)

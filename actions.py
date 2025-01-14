@@ -1,4 +1,4 @@
-# Description: The actions module.
+ # Description: The actions module.
 
 # The actions module contains the functions that are called when a command is executed.
 # Each function takes 3 parameters:
@@ -221,8 +221,9 @@ class Actions:
             command_word = list_of_words[0]
             print(MSG0.format(command_word=command_word))
             return False
-        print(game.player.current_room.get_inventory())
-        return True
+
+        return game.player.current_room.get_inventory()
+        
    
     def take(game, list_of_words, number_of_parameters):
         l = len(list_of_words)

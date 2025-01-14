@@ -181,26 +181,19 @@ class Actions:
             print("Le joueur est à son point d'apparition")
             return False
     
-    # Vérifier que le nombre de paramètres est correct
-        l = len(list_of_words)
-        if l != number_of_parameters + 1:
-            command_word = list_of_words[0]
-            print(f"Usage incorrect de la commande '{command_word}'")
-            return False
-    
     # Récupérer la salle précédente à partir de l'historique
         previous_room = game.player.history[-1]  # La deuxième dernière salle dans l'historique
         print(f"Vous êtes revenu dans : {previous_room.name}.")
     
         game.player.current_room = previous_room
-    
         print(game.player.current_room.get_long_description())
 
         game.player.history.pop()  # La salle actuelle est en dernière position, donc on la retire
         print(game.player.get_history())
         return True
         
-    @staticmethod
+
+
     def check(game, list_of_words, number_of_parameters):
         """
         Affiche la liste des items dans l'inventaire du joueur.
@@ -210,23 +203,10 @@ class Actions:
             list_of_words (list): Les mots de la commande saisie.
             number_of_parameters (int): Le nombre de paramètres attendu pour cette commande.
         """
-        # Appelle la méthode get_inventory() de l'objet Player
-        print(game.player.get_inventory())    
+        # Afficher les items présents dans l'inventaire du joueur
+        print(game.player.inventory.get_inventory_description(context="player"))    
    
-    def take(game, list_of_words, number_of_parameters):
-        l = len(list_of_words)
-        # If the number of parameters is incorrect, print an error message and return False.
-        if l != number_of_parameters + 1:
-            command_word = list_of_words[0]
-            print(MSG0.format(command_word=command_word))
-            return False
-        
-        item = list_of_words[1]
-        for key, items in game.player.current_room.inventory.items():
-            if item == key :
-                game.player.inventory[key] = items
-                del game.player.current_room.inventory[key]
-                break
+
 
     def look(game, list_of_words, number_of_parameters):
         """
@@ -237,16 +217,73 @@ class Actions:
             list_of_words (list) : Les mots de la commande entrée.
             number_of_parameters (int) : Le nombre de paramètres attendus pour la commande.
         """
-        # Obtenir la pièce actuelle du joueur
-        current_room = game.player.current_room
-
-        # Vérifier si le joueur est dans une pièce
-        if not current_room:
-            print("Vous n'êtes dans aucune pièce.")
-            return
-
-        # Afficher la description de la pièce
-        print(current_room.description)
 
         # Afficher les items présents dans la pièce
-        print(current_room.get_inventory())
+        print(game.player.current_room.inventory.get_inventory_description(context="room"))
+
+
+
+    def take(game, list_of_words, number_of_parameters):
+        """
+        Permet au joueur de prendre un item dans la pièce où il se trouve.
+
+        Args:
+            game: Instance du jeu.
+            list_of_words (list): Liste des mots de la commande.
+            number_of_parameters (int): Nombre attendu de paramètres.
+
+        Returns:
+            None
+        """
+        if len(list_of_words) < 2:
+            print("Vous devez spécifier l'item à prendre. Exemple : 'take sword'")
+            return
+
+        item_name = " ".join(list_of_words[1:])
+        current_room = game.player.current_room
+        room_inventory = current_room.inventory
+        player_inventory = game.player.inventory
+
+        # Chercher l'item dans l'inventaire de la pièce
+        for item in room_inventory.items:
+            if item.name.lower() == item_name.lower():
+                # Ajouter l'item à l'inventaire du joueur
+                player_inventory.add(item)
+                # Retirer l'item de l'inventaire de la pièce
+                room_inventory.remove(item)
+                print(f"Vous avez pris l'item : {item}.")
+                return
+
+        print(f"L'item '{item_name}' n'est pas présent dans cette pièce.")
+
+    def drop(game, list_of_words, number_of_parameters):
+        """
+        Permet au joueur de reposer un item dans la pièce où il se trouve.
+
+        Args:
+            game: Instance du jeu.
+            list_of_words (list): Liste des mots de la commande.
+            number_of_parameters (int): Nombre attendu de paramètres.
+
+        Returns:
+            None
+        """
+        if len(list_of_words) < 2:
+            print("Vous devez spécifier l'item à reposer. Exemple : 'drop sword'")
+            return
+
+        item_name = " ".join(list_of_words[1:])
+        player_inventory = game.player.inventory
+        current_room_inventory = game.player.current_room.inventory
+
+        # Chercher l'item dans l'inventaire du joueur
+        for item in player_inventory.items:
+            if item.name.lower() == item_name.lower():
+                # Retirer l'item de l'inventaire du joueur
+                player_inventory.remove(item)
+                # Ajouter l'item à l'inventaire de la pièce
+                current_room_inventory.add(item)
+                print(f"Vous avez reposé l'item : {item}.")
+                return
+
+        print(f"L'item '{item_name}' n'est pas présent dans votre inventaire.")

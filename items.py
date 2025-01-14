@@ -44,23 +44,33 @@ class Inventory:
     def add(self, item):
         """
         Ajoute un objet à l'inventaire.
-
-        Paramètres :
-            item (Item) : L'objet à ajouter.
         """
         self.items.add(item)
 
-    def get_inventory_description(self):
+    def remove(self, item):
         """
-        Retourne une description de l'inventaire.
+        Retire un item de l'inventaire.
+        """
+        self.items.remove(item)
 
-        Retour :
-            str : Une chaîne listant les objets ou un message si l'inventaire est vide.
+    def get_inventory_description(self, context):
+        """
+        Produit une description de l'inventaire.
+
+        Args:
+            context (str): Le contexte d'affichage ('player' ou 'room').
+
+        Returns:
+            str: Une chaîne décrivant les items de l'inventaire.
         """
         if not self.items:
-            return "Il n'y a rien ici."
+            if context == "player":
+                return "Votre inventaire est vide."
+            elif context == "room":
+                return "Il n'y a rien ici."
+        
+        prefix = "Vous disposez des items suivants :" if context == "player" else "La pièce contient :"
         return (
-            "La pièce contient :\n" +
-            "\n".join(f"    - {item.name} : {item.description} ({item.weight} kg)" for item in self.items)
+            f"{prefix}\n" +
+            "\n".join(f"    - {item}" for item in self.items)
         )
-

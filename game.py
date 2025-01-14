@@ -28,11 +28,15 @@ class Game:
         go = Command("go", " <direction> : se déplacer dans une direction (N, E, S, O, U, D )", Actions.go, 1)
         self.commands["go"] = go
         back = Command("back", " <direction> : se déplacer dans une direction (N, E, S, O, U, D )", Actions.back, 0)
-        self.commands["back"]=back
+        self.commands["back"]= back
         check = Command("check", " : vérifier les items dans votre inventaire", Actions.check, 0)
         self.commands["check"] = check
         look = Command("look", " : voir les items présents dans la pièce actuelle", Actions.look, 0)
         self.commands["look"] = look
+        take = Command("take", " : prendre un item dans la pièce où vous vous trouvez", Actions.take, 1)
+        self.commands["take"] = take
+        drop = Command("drop", " : reposer un item dans la pièce où vous vous trouvez", Actions.drop, 1)
+        self.commands["drop"] = drop
         
         # Setup rooms
 

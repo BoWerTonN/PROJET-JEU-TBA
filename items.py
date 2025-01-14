@@ -27,6 +27,40 @@ class Item:
 
         return f"{self.name} : {self.description} ({self.weight} kg)"
     
-sword = Item("sword", "une épée au fil tranchant comme un rasoir", 2)
-print(sword)
+class Inventory:
+    """
+    Classe pour gérer un inventaire d'objets.
+
+    Attributs :
+        items (set) : Un ensemble contenant les objets de l'inventaire.
+    """
+
+    def __init__(self):
+        """
+        Initialise un nouvel inventaire vide.
+        """
+        self.items = set()
+
+    def add(self, item):
+        """
+        Ajoute un objet à l'inventaire.
+
+        Paramètres :
+            item (Item) : L'objet à ajouter.
+        """
+        self.items.add(item)
+
+    def get_inventory_description(self):
+        """
+        Retourne une description de l'inventaire.
+
+        Retour :
+            str : Une chaîne listant les objets ou un message si l'inventaire est vide.
+        """
+        if not self.items:
+            return "Il n'y a rien ici."
+        return (
+            "La pièce contient :\n" +
+            "\n".join(f"    - {item.name} : {item.description} ({item.weight} kg)" for item in self.items)
+        )
 

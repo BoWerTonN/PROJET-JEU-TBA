@@ -29,7 +29,10 @@ class Game:
         self.commands["go"] = go
         back = Command("back", " <direction> : se déplacer dans une direction (N, E, S, O, U, D )", Actions.back, 0)
         self.commands["back"]=back
-        
+        check = Command("check", " : vérifier les items dans votre inventaire", Actions.check, 0)
+        self.commands["check"] = check
+        look = Command("look", " : voir les items présents dans la pièce actuelle", Actions.look, 0)
+        self.commands["look"] = look
         
         # Setup rooms
 
@@ -70,11 +73,18 @@ class Game:
         self.player = Player(input("\nEntrez votre nom: "))
         self.player.current_room = chateau
 
-        amulette = Item("Amulette des Druides", "Une amulette ancienne ornée de symboles mystérieux.", "0.5")
-        foret.inventory.add(amulette)
+        # Création des items
+        sword = Item("sword", "une épée au fil tranchant comme un rasoir", 2)
+        shield = Item("shield", "un bouclier léger et résistant", 1)
+        helmet = Item("helmet", "un casque en métal", 1)
 
-        check = Command("check", " : vérifier les items dans votre inventaire", Actions.check, 0)
-        self.commands["check"] = check
+        # Ajout des items aux salles
+        foret.inventory.add(sword)
+        village.inventory.add(shield)
+        chateau.inventory.add(helmet)
+
+
+        
 
     # Play the game
     def play(self):

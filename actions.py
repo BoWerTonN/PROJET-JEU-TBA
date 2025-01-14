@@ -200,23 +200,18 @@ class Actions:
         print(game.player.get_history())
         return True
         
+    @staticmethod
     def check(game, list_of_words, number_of_parameters):
         """
-        Affiche les items présents dans l'inventaire du joueur.
+        Affiche la liste des items dans l'inventaire du joueur.
 
-        :param game: L'objet du jeu contenant les informations sur l'état du jeu.
-        :param list_of_words: La liste des mots de la commande (ici, 'check').
-        :param number_of_parameters: Le nombre de paramètres attendus (non utilisé ici).
+        Args:
+            game (Game): L'objet du jeu.
+            list_of_words (list): Les mots de la commande saisie.
+            number_of_parameters (int): Le nombre de paramètres attendu pour cette commande.
         """
-        # Accéder à l'inventaire du joueur
-        inventory = game.player.inventory
-        
-        if not inventory:
-            print("Votre inventaire est vide.")
-        else:
-            print("Vous disposez des items suivants :")
-            for item in inventory.values():  # On suppose que inventory est un dictionnaire
-                print(f"- {item.name} : {item.description} ({item.weight} kg)")
+        # Appelle la méthode get_inventory() de l'objet Player
+        print(game.player.get_inventory())
 
     
     def look(game, list_of_words, number_of_parameters):
@@ -228,10 +223,6 @@ class Actions:
             return False
         print(game.player.current_room.get_inventory())
         return True
-        
-       
-
-
    
     def take(game, list_of_words, number_of_parameters):
         l = len(list_of_words)
@@ -247,3 +238,26 @@ class Actions:
                 game.player.inventory[key] = items
                 del game.player.current_room.inventory[key]
                 break
+
+    def look(game, list_of_words, number_of_parameters):
+        """
+        Affiche la description de la pièce actuelle et la liste des items présents.
+
+        Paramètres :
+            game (Game) : L'objet principal du jeu.
+            list_of_words (list) : Les mots de la commande entrée.
+            number_of_parameters (int) : Le nombre de paramètres attendus pour la commande.
+        """
+        # Obtenir la pièce actuelle du joueur
+        current_room = game.player.current_room
+
+        # Vérifier si le joueur est dans une pièce
+        if not current_room:
+            print("Vous n'êtes dans aucune pièce.")
+            return
+
+        # Afficher la description de la pièce
+        print(current_room.description)
+
+        # Afficher les items présents dans la pièce
+        print(current_room.get_inventory())

@@ -1,3 +1,4 @@
+from items import Inventory
 # Define the Player class.
 class Player():
     """
@@ -19,7 +20,8 @@ class Player():
         self.name = name
         self.current_room = None
         self.history = []
-        self.inventory = {}
+        self.inventory = Inventory()
+
         
     def set_starting_room(self, starting_room):
         
@@ -52,17 +54,10 @@ class Player():
 
     def get_inventory(self):
         """
-        Retourne une chaîne décrivant les objets dans l'inventaire du joueur.
+        Retourne la description de l'inventaire du joueur.
 
-        Returns:
-            str: Description des objets ou message indiquant que l'inventaire est vide.
+        Return :
+            str : Une chaîne listant les objets ou indiquant que l'inventaire est vide.
         """
-        if not self.inventory:
-            return "Votre inventaire est vide."
-
-        inventory_description = "\n".join(
-            f"- {item.name} : {item.description} ({item.weight} kg)"
-            for item in self.inventory.values()
-        )
-        return f"Vous disposez des items suivants :\n{inventory_description}"
+        return self.inventory.get_inventory_description()
         

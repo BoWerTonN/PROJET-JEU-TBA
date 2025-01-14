@@ -1,3 +1,5 @@
+from items import Inventory
+
 # Define the Room class.
 
 class Room:
@@ -21,7 +23,7 @@ class Room:
         self.name = name
         self.description = description
         self.exits = {}
-        self.inventory = set()
+        self.inventory = Inventory()
     
     # Define the get_exit method.
     def get_exit(self, direction):
@@ -47,10 +49,10 @@ class Room:
 
    
     def get_inventory(self):
-        
-        if not self.inventory:
-            return "Il n'y a rien ici."
-        return (
-            "La pièce contient :\n" +
-            "\n".join(f" {str(item)}" for item in self.inventory)
-        )
+        """
+        Retourne la description de l'inventaire de la pièce.
+
+        Return :
+            str : Une chaîne listant les objets ou indiquant que la pièce est vide.
+        """
+        return self.inventory.get_inventory_description()

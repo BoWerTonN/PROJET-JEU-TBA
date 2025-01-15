@@ -82,11 +82,28 @@ class Game:
         shield = Item("shield", "un bouclier léger et résistant", 1)
         helmet = Item("helmet", "un casque en métal", 1)
 
+        herbs = Item("herbs", "des herbes médicinales aux propriétés curatives", 1)
+        amulet = Item("amulet", "une amulette mystérieuse gravée de symboles anciens", 1)
+        torch = Item("torch", "une torche qui éclaire les endroits sombres", 1)
+        golden_key = Item("golden_key", "une clé dorée ouvrant une porte secrète", 1)
+        stone = Item("stone", "une pierre étrange et lisse, peut-être magique", 1)
+        bread = Item("bread", "un morceau de pain, simple mais nourrissant", 1)
+        map = Item("map", "une carte ancienne montrant des chemins oubliés", 1)
+        crystal = Item("crystal", "un cristal brillant émettant une douce lumière", 1)
+
         # Ajout des items aux salles
         foret.inventory.add(sword)
         village.inventory.add(shield)
         chateau.inventory.add(helmet)
-
+        
+        grotte.inventory.add(torch)
+        cascade.inventory.add(crystal)
+        rempart.inventory.add(map)
+        prison.inventory.add(golden_key)
+        champ.inventory.add(bread)
+        foret.inventory.add(herbs)
+        village.inventory.add(amulet)
+        chateau.inventory.add(stone)
 
         
 

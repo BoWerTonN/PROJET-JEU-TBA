@@ -24,6 +24,7 @@ class Room:
         self.description = description
         self.exits = {}
         self.inventory = Inventory()
+        self.characters = {}
     
     # Define the get_exit method.
     def get_exit(self, direction):
@@ -50,9 +51,47 @@ class Room:
    
     def get_inventory(self):
         """
-        Retourne la description de l'inventaire de la pièce.
+        Produit une description des items et des personnages non joueurs présents dans la pièce.
 
-        Return :
-            str : Une chaîne listant les objets ou indiquant que la pièce est vide.
+        Returns:
+            str : Une description des items et des PNJ dans la pièce.
         """
-        return self.inventory.get_inventory_description()
+        descriptions = []
+
+        # Ajouter les descriptions des items avec le contexte "room"
+        items_description = self.inventory.get_inventory_description("room")
+        if items_description != "Il n'y a rien ici.":
+            descriptions.append(items_description)
+
+        # Ajouter les descriptions des PNJ
+        if self.characters:
+            characters_description = (
+                "Les personnages suivants sont ici :\n" +
+                "\n".join(f"- {name} : {char.description}" for name, char in self.characters.items())
+            )
+            descriptions.append(characters_description)
+
+        # Retourner l'ensemble des descriptions
+        if descriptions:
+            return "\n".join(descriptions)
+        else:
+            return "Il n'y a rien ici."
+
+    def add_character(self, character):
+        """
+        Ajoute un personnage non joueur à la pièce.
+
+        Args:
+            character (Character) : Le personnage à ajouter.
+        """
+        self.characters[character.name] = character
+
+    def remove_character(self, character_name):
+        """
+        Retire un personnage non joueur de la pièce.
+
+        Args:
+            character_name (str) : Le nom du personnage à retirer.
+        """
+        if character_name in self.characters:
+            del self.characters[character_name]

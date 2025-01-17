@@ -7,6 +7,7 @@ from player import Player
 from command import Command
 from actions import Actions
 from items import Item
+from character import Character
 class Game:
 
     # Constructor
@@ -105,7 +106,19 @@ class Game:
         village.inventory.add(amulet)
         chateau.inventory.add(stone)
 
-        
+         # Création des PNJ
+        gandalf = Character("Gandalf", "un magicien blanc", foret, ["Je suis ici pour vous guider."])
+        blacksmith = Character("Forgeron", "un artisan musclé", village, ["Je peux forger une épée pour vous."])
+
+        # Associer les PNJ aux pièces
+        foret.add_character(gandalf)
+        village.add_character(blacksmith)
+
+        # Stocker les pièces dans un dictionnaire
+        self.rooms = {
+            "foret": foret,
+            "village": village,
+        }
 
     # Play the game
     def play(self):

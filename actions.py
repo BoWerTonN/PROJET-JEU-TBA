@@ -219,8 +219,8 @@ class Actions:
         """
 
         # Afficher les items présents dans la pièce
-        print(game.player.current_room.inventory.get_inventory_description(context="room"))
-
+        current_room = game.player.current_room
+        print(current_room.get_inventory())
 
 
     def take(game, list_of_words, number_of_parameters):

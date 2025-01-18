@@ -9,6 +9,7 @@ from actions import Actions
 from items import Item
 from character import Character
 from settings import DEBUG
+import tkinter as tk
 class Game:
 
     # Constructor
@@ -17,7 +18,26 @@ class Game:
         self.rooms = []
         self.commands = {}
         self.player = None
+    """
+    def display_welcome_message():
+    # Créer une fenêtre Tkinter
+    window = tk.Tk()
+    window.title("Bienvenue dans l'aventure !")
     
+    # Créer un label avec le message de bienvenue
+    welcome_label = tk.Label(window, text="Bienvenue dans l'aventure !\nVous êtes sur le point de commencer une aventure épique. Bonne chance !", font=("Arial", 14))
+    welcome_label.pack(pady=20)
+    
+    # Ajouter un bouton pour fermer la fenêtre
+    close_button = tk.Button(window, text="Commencer l'aventure", command=window.destroy, font=("Arial", 12))
+    close_button.pack(pady=20)
+    
+    # Lancer la fenêtre Tkinter
+    window.mainloop()
+# Je n'arrive pas à afficher une fenêtre avec github
+# Appeler la fonction pour afficher le message de bienvenue
+display_welcome_message()
+"""
     # Setup the game
     def setup(self):
 
@@ -82,7 +102,7 @@ class Game:
         # Setup player and starting room
 
         self.player = Player(input("\nEntrez votre nom: "))
-        self.player.current_room = chateau
+        self.player.current_room = village
 
         # Création des items
         epee = Item("epee", "une épée au fil tranchant comme un rasoir", 5)
@@ -106,7 +126,7 @@ class Game:
         bucheron = Character("Bûcheron", "Un robuste homme avec une hache, prêt à couper du bois dans la forêt.", foret, ["Je suis Pierre, le bûcheron. Si vous avez besoin de bois, vous savez où me trouver.",
                "Ce bois est parfait pour l'hiver, vous ne trouvez pas ?",
                "La forêt est grande, mais je connais chaque arbre ici."])
-        roi = Character("Roi", "Le souverain du royaume, portant une couronne d'or et un manteau royal.", chateau, ["Qui ose troubler la paix de mon royaume ?"])
+        roi = Character("Roi", "Le souverain du royaume, portant une couronne d'or et un manteau royal.", chateau, ["Salut aventurier ! Un terrible dragon menace notre royaume... Si tu es assez courageux, arme toi d'une épée et récupère la carte dans mon donjon, tu sauras où ce trouve l'antre de ce monstre ! Je te couvrirai d'or à ton retour ! Si tu reviens bien sûr..."])
         forgeron = Character("Forgeron", "un artisan complètement chauve et musclé", village, ["Je peux forger une épée pour vous."])
         prisonnier = Character("Prisonnier", "Un homme enchaîné, avec une barbe longue et des yeux fatigués.", prison, ["Les murs ici semblent m'étouffer.", 
                "Si seulement quelqu'un pouvait m'aider à m'échapper..."])
@@ -148,7 +168,7 @@ class Game:
     # Print the welcome message
     def print_welcome(self):
         print(f"\nBienvenue {self.player.name} dans ce jeu d'aventure !")
-        print("Entrez 'help' si vous avez besoin d'aide.")
+        print("Vous devriez allez voir le roi dans le château, il a une quête pour vous !")
         #
         print(self.player.current_room.get_long_description())
     

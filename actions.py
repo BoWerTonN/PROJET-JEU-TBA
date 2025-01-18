@@ -324,9 +324,9 @@ class Actions:
         pnj_name = list_of_words[1].lower()
         current_room = game.player.current_room
 
-        # Vérifie si le PNJ est présent dans la pièce
-        if pnj_name in current_room.characters:
-            pnj = current_room.characters[pnj_name]
-            print(pnj.get_msg())
-        else:
-            print(f"Aucun personnage nommé '{pnj_name}' ici.")
+        # Vérifie si le PNJ est présent dans la salle
+        for key, pnj in current_room.characters.items():
+            if key.lower() == pnj_name:  
+                print(pnj.get_msg())  # Affiche le message du PNJ
+                return
+                print(f"Aucun personnage nommé '{pnj_name}' ici.")

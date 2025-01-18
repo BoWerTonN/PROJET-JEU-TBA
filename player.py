@@ -52,10 +52,11 @@ class Player():
             else:
                 if not self.inventory.contains("carte"):
                     print("\nVous avez besoin de la carte pour accéder à la grotte.\n")
+                    return False
                 if not self.inventory.contains("epee"):
                     print("Vous entrez dans la grotte, mais le dragon vous fixe avec ses yeux rouges. Vous tentez de l'affronter, mais sans votre épée, vous êtes impuissant. Le dragon vous attaque sauvagement, et vous n'avez aucune chance de survie...")
                     exit()  # Arrêter le jeu
-                return False
+                
 
 
         # Vérifier si l'accès à la grotte est restreint

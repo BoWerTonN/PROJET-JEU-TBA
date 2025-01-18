@@ -45,7 +45,6 @@ class Player():
 
         # Condition de victoire : si on entre dans la grotte avec la carte et l'épée
         if next_room.name == "Grotte":
-            print(f"DEBUG: Inventaire actuel: {self.inventory.items}")
             if self.inventory.contains("carte") and self.inventory.contains("epee"):
                 print("Vous entrez dans la grotte. Un rugissement retentit, et un dragon colossal surgit des ténèbres.  Ses yeux rouges vous fixent avec fureur. Vous brandissez votre épée et esquivez de justesse son souffle brûlant. Profitant d’une ouverture, vous frappez son flanc, mais ses écailles sont dures comme l’acier. Le dragon riposte, vous projette contre une paroi, mais vous tenez bon.Voyant son ventre exposé, vous rassemblez vos forces pour un coup décisif. Votre épée transperce son cœur. Le dragon s’effondre dans un rugissement final, et le silence retombe. Devant vous, un trésor brille. Vous sortez victorieux, héros de votre propre légende. Félicitations, vous avez terminé le jeu !")
                 print("Félicitations, vous avez terminé le jeu !")
@@ -55,7 +54,9 @@ class Player():
                     print("\nVous avez besoin de la carte pour accéder à la grotte.\n")
                 if not self.inventory.contains("epee"):
                     print("Vous entrez dans la grotte, mais le dragon vous fixe avec ses yeux rouges. Vous tentez de l'affronter, mais sans votre épée, vous êtes impuissant. Le dragon vous attaque sauvagement, et vous n'avez aucune chance de survie...")
+                    exit()  # Arrêter le jeu
                 return False
+
 
         # Vérifier si l'accès à la grotte est restreint
         if next_room.name == "Grotte" and not self.inventory.contains("carte"):

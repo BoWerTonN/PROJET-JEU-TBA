@@ -1,0 +1,2 @@
+# settings.py
+DEBUG = False

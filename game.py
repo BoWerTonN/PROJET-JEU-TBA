@@ -8,6 +8,7 @@ from command import Command
 from actions import Actions
 from items import Item
 from character import Character
+from settings import DEBUG
 class Game:
 
     # Constructor
@@ -38,26 +39,28 @@ class Game:
         self.commands["take"] = take
         drop = Command("drop", " : reposer un item dans la pièce où vous vous trouvez", Actions.drop, 1)
         self.commands["drop"] = drop
+        talk = Command("talk", " <pnj> : parler à un personnage non joueur", Actions.talk, 1)
+        self.commands["talk"] = talk
         
         # Setup rooms
 
-        foret = Room("Foret", "Une forêt dense et sombre, où la lumière peine à pénétrer. C’est le refuge de nombreux rebelles, mais aussi le lieu où les druides pratiquent encore leurs anciens rituels.")
+        foret = Room("Foret", "Une forêt dense et sombre, où la lumière peine à pénétrer. Des racines tordues émergent du sol, comme des griffes cherchant à attraper les imprudents.")
         self.rooms.append(foret)
-        rempart = Room("Rempart", "Une imposante muraille protégeant autrefois la capitale, aujourd’hui en ruines. Des éclats de combat y sont encore visibles.")
+        rempart = Room("Rempart", "Les murs imposants du rempart témoignent de la grandeur passée de la capitale. Des morceaux de pierre brisée gisent au sol. ")
         self.rooms.append(rempart)
         grotte = Room("Grotte", "Une cavité naturelle creusée dans la roche, humide et oppressante. On dit qu’elle mène à des passages oubliés.")
         self.rooms.append(grotte)
         cascade = Room("Cascade", "Une chute d’eau majestueuse masquant une entrée secrète. Le son apaisant dissimule une tension sous-jacente.")
         self.rooms.append(cascade)
-        village = Room("Village", "Un lieu paisible autrefois, maintenant en proie à la peur. Les habitants murmurent à propos des Ombres Noires et refusent de parler aux étrangers.")
+        village = Room("Village", "Le village est calme, presque trop calme, comme s'il attendait quelque chose. Les rues sont désertes, et la plupart des portes sont fermées à double tour.")
         self.rooms.append(village)
-        champ = Room("Champ", "Des étendues de terres cultivées, abandonnées après les récents raids. Les épis de blé se balancent tristement dans le vent.")
+        champ = Room("Champ", "Les champs de blé se balancent doucement dans le vent, comme des vagues dorées. Des oiseaux chantent doucement, mais leurs chants semblent moins joyeux qu'autrefois.")
         self.rooms.append(champ)
-        chateau = Room("Chateau", "Le cœur du royaume, autrefois un lieu de faste, maintenant assiégé par le chaos. Ses couloirs cachent des complots et des souvenirs du roi disparu." )
+        chateau = Room("Chateau", "Le château se dresse fièrement, mais sa grandeur passée est maintenant ternie par les signes de l'abandon." )
         self.rooms.append(chateau)
-        donjon = Room("Donjon","La partie la plus fortifiée du château, utilisée pour protéger les trésors ou enfermer les ennemis du royaume.")
+        donjon = Room("Donjon","Le donjon est un lieu froid et humide, où chaque bruit semble amplifié par les murs épais. Le sol est jonché de débris, témoins des années de négligence et d’abandon.")
         self.rooms.append(donjon)
-        prison = Room("Prison","Une geôle sombre et humide, où les cris des captifs résonnent encore. C’est ici que sont enfermés les ennemis du trône.")
+        prison = Room("Prison","Les cellules de la prison sont sombres et exiguës, offrant peu d’espoir à ceux qui y sont enfermés.")
         self.rooms.append(prison)
 
 
@@ -72,6 +75,9 @@ class Game:
         chateau.exits = {"N" : None, "E" : donjon, "S" : None, "O" : village, "U": rempart, "D": None}
         donjon.exits = {"N" : None, "E" : None, "S" : None, "O" : chateau, "U": None, "D": prison}
         prison.exits = {"N" : None, "E" : None, "S" : None, "O" : None, "U": donjon, "D": None}
+
+        self.rooms = [foret, rempart, grotte, cascade, village, champ, chateau, donjon, prison]
+
 
         # Setup player and starting room
 
@@ -107,18 +113,13 @@ class Game:
         chateau.inventory.add(stone)
 
          # Création des PNJ
-        gandalf = Character("Gandalf", "un magicien blanc", foret, ["Je suis ici pour vous guider."])
-        blacksmith = Character("Forgeron", "un artisan musclé", village, ["Je peux forger une épée pour vous."])
+        gandalf = Character("gandalf", "un magicien blanc", foret, ["Je suis Gandalf", "Abracadabra !"])
+        blacksmith = Character("forgeron", "un artisan musclé", village, ["Je peux forger une épée pour vous."])
 
         # Associer les PNJ aux pièces
         foret.add_character(gandalf)
         village.add_character(blacksmith)
 
-        # Stocker les pièces dans un dictionnaire
-        self.rooms = {
-            "foret": foret,
-            "village": village,
-        }
 
     # Play the game
     def play(self):
@@ -146,6 +147,17 @@ class Game:
             command = self.commands[command_word]
             command.action(self, list_of_words, command.number_of_parameters)
 
+        # Si le joueur se déplace (commande 'go' ou 'back'), déplacer les PNJ
+        if command_word in ["go", "back"]:
+            self.move_pnj()  # Déplacer les PNJ après que le joueur se soit déplacé
+
+    # Méthode pour déplacer les PNJ dans leurs pièces respectives
+    def move_pnj(self):
+        for room in self.rooms:
+            for character in room.characters:
+                character.move()
+
+
     # Print the welcome message
     def print_welcome(self):
         print(f"\nBienvenue {self.player.name} dans ce jeu d'aventure !")
@@ -153,6 +165,7 @@ class Game:
         #
         print(self.player.current_room.get_long_description())
     
+
 
 def main():
     # Create a game object and play the game

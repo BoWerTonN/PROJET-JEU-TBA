@@ -1,4 +1,5 @@
- # Description: The actions module.
+
+# Description: The actions module.
 
 # The actions module contains the functions that are called when a command is executed.
 # Each function takes 3 parameters:
@@ -61,7 +62,7 @@ class Actions:
             command_word = list_of_words[0]
             print(MSG1.format(command_word=command_word))
             return False
-
+        
         # Get the direction from the list of words.
         direction = list_of_words[1]
 
@@ -287,3 +288,26 @@ class Actions:
                 return
 
         print(f"L'item '{item_name}' n'est pas présent dans votre inventaire.")
+
+    def talk(game, list_of_words, number_of_parameters):
+        """
+        Permet au joueur de parler à un PNJ dans la pièce actuelle.
+
+        Args:
+            game (Game): Instance du jeu.
+            list_of_words (list[str]): Les mots de la commande utilisateur.
+            number_of_parameters (int): Le nombre de paramètres attendus.
+        """
+        if len(list_of_words) < 2:
+            print("À qui voulez-vous parler ?")
+            return
+
+        pnj_name = list_of_words[1].lower()
+        current_room = game.player.current_room
+
+        # Vérifie si le PNJ est présent dans la pièce
+        if pnj_name in current_room.characters:
+            pnj = current_room.characters[pnj_name]
+            print(pnj.get_msg())
+        else:
+            print(f"Aucun personnage nommé '{pnj_name}' ici.")

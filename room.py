@@ -1,4 +1,5 @@
 from items import Inventory
+from settings import DEBUG
 
 # Define the Room class.
 
@@ -54,7 +55,7 @@ class Room:
         Produit une description des items et des personnages non joueurs présents dans la pièce.
 
         Returns:
-            str : Une description des items et des PNJ dans la pièce.
+        str : Une description des items et des PNJ dans la pièce.
         """
         descriptions = []
 
@@ -64,6 +65,7 @@ class Room:
             descriptions.append(items_description)
 
         # Ajouter les descriptions des PNJ
+        characters_description = ""  # Initialisation par défaut
         if self.characters:
             characters_description = (
                 "Les personnages suivants sont ici :\n" +
@@ -71,11 +73,23 @@ class Room:
             )
             descriptions.append(characters_description)
 
+        # Débogage conditionnel
+        if DEBUG:
+            print(f"DEBUG: Inventaire de la salle {self.name}:")
+            print(f"DEBUG: Items -> {items_description}")
+            print(f"DEBUG: Personnages -> {characters_description if self.characters else 'Aucun'}")
+
         # Retourner l'ensemble des descriptions
         if descriptions:
             return "\n".join(descriptions)
         else:
             return "Il n'y a rien ici."
+
+            # Retourner l'ensemble des descriptions
+            if descriptions:
+                return "\n".join(descriptions)
+            else:
+                return "Il n'y a rien ici."
 
     def add_character(self, character):
         """

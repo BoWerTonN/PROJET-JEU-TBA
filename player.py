@@ -1,4 +1,5 @@
 from items import Inventory
+from character import Character
 # Define the Player class.
 class Player():
     """
@@ -44,7 +45,17 @@ class Player():
         self.current_room = next_room
         print(self.current_room.get_long_description())
         print(self.get_history())
+
+        # Déplacer les PNJ une fois que le joueur a bougé.
+        self.move_pnj()  # Déplace les PNJ après chaque déplacement du joueur.
+
         return True
+
+    def move_pnj(self):
+        # Utiliser une liste des noms des personnages dans la pièce pour éviter l'erreur de modification du dictionnaire pendant l'itération
+        for character_name in list(self.current_room.characters.keys()):  # Créer une copie des clés
+            character = self.current_room.characters[character_name]
+            character.move()  # Déplace chaque PNJ
 
     def get_history(self):
         return(

@@ -42,12 +42,19 @@ class Character:
 
     def move(self):
         """
-        Fait se déplacer le personnage non joueur.
+        Fait se déplacer le personnage non joueur, sauf si le personnage est immobile.
 
         Returns:
             bool: True si le PNJ s'est déplacé, False sinon.
         """
-        import random
+        immobile_characters = ['roi', 'forgeron', 'prisonnier']  # Liste des personnages immobiles
+    
+        # Si le personnage est immobile, on ne le déplace pas
+        if self.name.lower() in immobile_characters:
+            print(f"{self.name} reste sur place.")
+            return False
+
+        # Si le personnage n'est pas immobile, on procède au déplacement
         if random.choice([True, False]):
             # Récupérer les salles voisines (qui ne sont pas None)
             adjacent_rooms = [room for room in self.current_room.exits.values() if room]
@@ -56,18 +63,19 @@ class Character:
             if adjacent_rooms:
                 # Choisir une salle voisine aléatoire
                 new_room = random.choice(adjacent_rooms)
+
+                # Afficher un message lorsque le personnage se déplace
+                print(f"{self.name} se déplace de {self.current_room.name} vers {new_room.name}.")
             
-                if DEBUG:
-                    print(f"DEBUG: {self.name} se déplace de {self.current_room.name} vers {new_room.name}.")
-            
-                # Retirer le PNJ de la salle actuelle
-                self.current_room.characters.remove(self)
-            
-                # Mettre à jour la salle actuelle du PNJ
+                # Retirer le personnage de la salle actuelle
+                if self.name in self.current_room.characters:
+                    del self.current_room.characters[self.name]  # Utilisation de 'del' pour supprimer un dictionnaire
+
+                # Mettre à jour la salle actuelle
                 self.current_room = new_room
-            
-                # Ajouter le PNJ à la nouvelle salle
-                self.current_room.characters.append(self)
+
+                # Ajouter le personnage à la nouvelle salle
+                self.current_room.characters[self.name] = self
             
                 return True
         

@@ -191,6 +191,7 @@ class Actions:
 
         game.player.history.pop()  # La salle actuelle est en dernière position, donc on la retire
         print(game.player.get_history())
+
         return True
         
 

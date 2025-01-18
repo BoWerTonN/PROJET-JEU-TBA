@@ -112,14 +112,22 @@ class Game:
         village.inventory.add(amulet)
         chateau.inventory.add(stone)
 
-         # Création des PNJ
-        gandalf = Character("gandalf", "un magicien blanc", foret, ["Je suis Gandalf", "Abracadabra !"])
-        blacksmith = Character("forgeron", "un artisan musclé", village, ["Je peux forger une épée pour vous."])
+        # Création des PNJ
+        bucheron = Character("Bûcheron", "Un robuste homme avec une hache, prêt à couper du bois dans la forêt.", foret, ["Je suis Pierre, le bûcheron. Si vous avez besoin de bois, vous savez où me trouver.",
+               "Ce bois est parfait pour l'hiver, vous ne trouvez pas ?",
+               "La forêt est grande, mais je connais chaque arbre ici."])
+        roi = Character("Roi", "Le souverain du royaume, portant une couronne d'or et un manteau royal.", chateau, ["Qui ose troubler la paix de mon royaume ?"])
+        forgeron = Character("Forgeron", "un artisan complètement chauve et musclé", village, ["Je peux forger une épée pour vous."])
+        prisonnier = Character("Prisonnier", "Un homme enchaîné, avec une barbe longue et des yeux fatigués.", prison, ["Les murs ici semblent m'étouffer.", 
+               "Si seulement quelqu'un pouvait m'aider à m'échapper..."])
+        villageois = Character("Villageois","Un homme vêtu simplement, qui semble toujours occupé par les tâches du village.", village, ["Êtes-vous l'aventurier venu nous sauver ?"])
 
         # Associer les PNJ aux pièces
-        foret.add_character(gandalf)
-        village.add_character(blacksmith)
-
+        foret.add_character(bucheron)
+        village.add_character(forgeron)
+        chateau.add_character(roi)
+        prison.add_character(prisonnier)
+        village.add_character(villageois)
 
     # Play the game
     def play(self):
@@ -146,17 +154,6 @@ class Game:
         else:
             command = self.commands[command_word]
             command.action(self, list_of_words, command.number_of_parameters)
-
-        # Si le joueur se déplace (commande 'go' ou 'back'), déplacer les PNJ
-        if command_word in ["go", "back"]:
-            self.move_pnj()  # Déplacer les PNJ après que le joueur se soit déplacé
-
-    # Méthode pour déplacer les PNJ dans leurs pièces respectives
-    def move_pnj(self):
-        for room in self.rooms:
-            for character in room.characters:
-                character.move()
-
 
     # Print the welcome message
     def print_welcome(self):

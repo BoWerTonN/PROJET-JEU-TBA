@@ -71,6 +71,6 @@ class Inventory:
         
         prefix = "Vous disposez des items suivants :" if context == "player" else "La pièce contient :"
         return (
-            f"{prefix}\n" +
+            f"{prefix}\n"+
             "\n".join(f"    - {item}" for item in self.items)
         )

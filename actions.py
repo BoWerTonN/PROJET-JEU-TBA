@@ -237,6 +237,8 @@ class Actions:
         Returns:
             None
         """
+        player = game.player
+
         if len(list_of_words) < 2:
             print("Vous devez spécifier l'item à prendre. Exemple : 'take sword'")
             return
@@ -245,6 +247,23 @@ class Actions:
         current_room = game.player.current_room
         room_inventory = current_room.inventory
         player_inventory = game.player.inventory
+
+        # Chercher l'item dans l'inventaire de la pièce
+        item_to_take = None
+        for item in room_inventory.items:
+            if item.name.lower() == item_name.lower():
+                item_to_take = item
+                break
+
+        if not item_to_take:
+            print(f"L'item '{item_name}' n'est pas présent dans cette pièce.")
+            return
+
+        # Vérifier si le joueur peut prendre l'objet (en fonction du poids)
+        total_weight = player.get_total_weight() + item.weight
+        if total_weight > player.max_weight:
+            print(f"Vous ne pouvez pas prendre {item_name}. L'objet est trop lourd pour votre inventaire ({total_weight}/{player.max_weight} kg).")
+            return False
 
         # Chercher l'item dans l'inventaire de la pièce
         for item in room_inventory.items:
@@ -256,7 +275,6 @@ class Actions:
                 print(f"Vous avez pris l'item : {item}.")
                 return
 
-        print(f"L'item '{item_name}' n'est pas présent dans cette pièce.")
 
     def drop(game, list_of_words, number_of_parameters):
         """

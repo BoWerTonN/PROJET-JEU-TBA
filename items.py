@@ -53,6 +53,21 @@ class Inventory:
         """
         self.items.remove(item)
 
+    def contains(self, item_name): 
+        """
+        Obligé de créer cette fonction en plus car sans on arrive pas à faire vérifier la condition de possession 
+        de la carte pour rentrer dans la grotte.
+
+        Vérifie si un objet avec un nom donné est dans l'inventaire.
+
+        Args:
+            item_name (str): Le nom de l'objet à vérifier.
+
+        Returns:
+            bool: True si l'objet est présent, False sinon.
+        """
+        return any(item.name == item_name for item in self.items)
+
     def get_inventory_description(self, context):
         """
         Produit une description de l'inventaire.

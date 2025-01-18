@@ -85,32 +85,22 @@ class Game:
         self.player.current_room = chateau
 
         # Création des items
-        sword = Item("sword", "une épée au fil tranchant comme un rasoir", 2)
-        shield = Item("shield", "un bouclier léger et résistant", 1)
-        helmet = Item("helmet", "un casque en métal", 1)
-
-        herbs = Item("herbs", "des herbes médicinales aux propriétés curatives", 1)
-        amulet = Item("amulet", "une amulette mystérieuse gravée de symboles anciens", 1)
-        torch = Item("torch", "une torche qui éclaire les endroits sombres", 1)
-        golden_key = Item("golden_key", "une clé dorée ouvrant une porte secrète", 1)
-        stone = Item("stone", "une pierre étrange et lisse, peut-être magique", 1)
-        bread = Item("bread", "un morceau de pain, simple mais nourrissant", 1)
-        map = Item("map", "une carte ancienne montrant des chemins oubliés", 1)
-        crystal = Item("crystal", "un cristal brillant émettant une douce lumière", 1)
+        epee = Item("epee", "une épée au fil tranchant comme un rasoir", 5)
+        clef = Item("clef", "une clé dorée ouvrant une porte secrète", 1)
+        pain = Item("pain", "un morceau de pain rassis", 1)
+        carte = Item("carte", "une carte ancienne montrant des chemins oubliés", 1)
+        buche = Item("buche", "un énorme bout de bois, certainement trop lourd pour être porté seul", 20)
 
         # Ajout des items aux salles
-        foret.inventory.add(sword)
-        village.inventory.add(shield)
-        chateau.inventory.add(helmet)
+        foret.inventory.add(buche)
+        village.inventory.add(epee)
+        donjon.inventory.add(carte)
+        prison.inventory.add(clef)
+        prison.inventory.add(pain)
+
+        # Création du joueur avec une capacité de 15 kg
+        player = Player("Héros", max_weight=15)
         
-        grotte.inventory.add(torch)
-        cascade.inventory.add(crystal)
-        rempart.inventory.add(map)
-        prison.inventory.add(golden_key)
-        champ.inventory.add(bread)
-        foret.inventory.add(herbs)
-        village.inventory.add(amulet)
-        chateau.inventory.add(stone)
 
         # Création des PNJ
         bucheron = Character("Bûcheron", "Un robuste homme avec une hache, prêt à couper du bois dans la forêt.", foret, ["Je suis Pierre, le bûcheron. Si vous avez besoin de bois, vous savez où me trouver.",

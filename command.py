@@ -1,4 +1,6 @@
-# This file contains the Command class.
+"""
+class command
+"""
 
 class Command:
     """

@@ -1,3 +1,6 @@
+"""
+class actions
+"""
 
 # Description: The actions module.
 

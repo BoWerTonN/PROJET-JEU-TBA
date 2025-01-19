@@ -1,3 +1,7 @@
+"""
+class room
+"""
+
 from items import Inventory
 from settings import DEBUG
 

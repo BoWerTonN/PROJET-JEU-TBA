@@ -1,4 +1,6 @@
-# Description: Game class
+"""
+class game
+"""
 
 # Import modules
 
@@ -127,7 +129,7 @@ display_welcome_message()
                "Ce bois est parfait pour l'hiver, vous ne trouvez pas ?",
                "La forêt est grande, mais je connais chaque arbre ici."])
         roi = Character("Roi", "Le souverain du royaume, portant une couronne d'or et un manteau royal.", chateau, ["Salut aventurier ! Un terrible dragon menace notre royaume... Si tu es assez courageux, arme toi d'une épée et récupère la carte dans mon donjon, tu sauras où ce trouve l'antre de ce monstre ! Je te couvrirai d'or à ton retour ! Si tu reviens bien sûr..."])
-        forgeron = Character("Forgeron", "un artisan complètement chauve et musclé", village, ["Je peux forger une épée pour vous."])
+        forgeron = Character("Forgeron", ".", village, ["Je peux forger une épée pour vous."])
         prisonnier = Character("Prisonnier", "Un homme enchaîné, avec une barbe longue et des yeux fatigués.", prison, ["Les murs ici semblent m'étouffer.", 
                "Si seulement quelqu'un pouvait m'aider à m'échapper..."])
         villageois = Character("Villageois","Un homme vêtu simplement, qui semble toujours occupé par les tâches du village.", village, ["Êtes-vous l'aventurier venu nous sauver ?"])

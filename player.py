@@ -1,3 +1,7 @@
+"""
+class player
+"""
+
 from items import Inventory
 from character import Character
 from settings import DEBUG

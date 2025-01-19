@@ -1,3 +1,7 @@
+"""
+class character
+"""
+
 import random
 from settings import DEBUG
 
